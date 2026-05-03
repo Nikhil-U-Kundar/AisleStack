@@ -1,0 +1,6 @@
+# Ignore compiled binary and the generated SQLite database file
+/server
+*.db
+
+# Ignore env file — never commit secrets
+.env

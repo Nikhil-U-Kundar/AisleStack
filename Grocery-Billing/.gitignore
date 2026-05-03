@@ -1,0 +1,18 @@
+# Environment files — never commit secrets
+.env
+.env.local
+.env.*.local
+
+# Backend compiled binary and database
+backend/server
+backend/*.db
+
+# Frontend build output
+frontend/dist/
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
