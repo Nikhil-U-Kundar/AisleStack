@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a1a2e;
+    color: #e8e8f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 1023px) {
+    .page-container {
+      padding-top: 64px; /* Adjust for mobile header height */
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080810;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e1e3a;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: rgba(124, 106, 247, 0.3);
+    color: #e8e8f0;
+  }
+
+  @media (min-width: 768px) {
+    html, body {
+      font-size: 18px;
+    }
+
+    #root {
+      padding: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html, body {
+      font-size: 20px;
+    }
+
+    .page-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .page-container {
+      padding-top: 64px; /* Adjust for mobile header height */
+    }
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply max-w-md mx-auto relative;
+    min-height: calc(100dvh - 64px);
+    padding-bottom: 80px;
+  }
+
+  .tech-pill {
+    @apply text-xs font-mono px-2 py-0.5 border border-bg-border rounded text-text-secondary;
+    transition: all 0.2s ease;
+  }
+
+  .tech-pill:hover {
+    @apply border-accent-primary text-accent-primary;
+  }
+
+  .stat-card {
+    @apply flex flex-col gap-1;
+  }
+
+  .project-card {
+    @apply bg-bg-card border border-bg-border rounded-lg p-4 mb-4;
+    transition: border-color 0.3s ease;
+  }
+
+  .project-card:hover {
+    @apply border-accent-primary;
+  }
+
+  .section-label {
+    @apply text-xs font-mono text-text-muted tracking-[0.2em] uppercase;
+  }
+
+  .skill-bar {
+    @apply h-0.5 bg-bg-border rounded-full overflow-hidden;
+  }
+
+  .skill-bar-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, #7c6af7, #a78bfa);
+    transition: width 1s ease-in-out;
+  }
+
+  .nav-item {
+    @apply flex flex-col items-center gap-1 flex-1 py-2 text-text-muted;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item.active {
+    @apply text-accent-primary;
+  }
+
+  .nav-item:hover {
+    @apply text-text-primary;
+  }
+
+  .cta-btn {
+    @apply px-5 py-2.5 font-mono text-sm font-medium tracking-wider;
+    transition: all 0.2s ease;
+  }
+
+  .cta-btn-primary {
+    @apply cta-btn border border-accent-primary text-accent-primary;
+    background: transparent;
+  }
+
+  .cta-btn-primary:hover {
+    background: rgba(124, 106, 247, 0.1);
+  }
+
+  .cta-btn-ghost {
+    @apply cta-btn text-text-secondary;
+  }
+
+  .cta-btn-ghost:hover {
+    @apply text-text-primary;
+  }
+
+  .glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,106,247,0.5), transparent);
+  }
+}
+
+/* Scrollable content */
+.content-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Green dot blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.blink {
+  animation: blink 2s ease-in-out infinite;
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Terminal cursor */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.terminal-cursor::after {
+  content: '_';
+  animation: blink-cursor 1s step-end infinite;
+  color: #7c6af7;
+}
+
+/* Scanline overlay */
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+.scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+}
